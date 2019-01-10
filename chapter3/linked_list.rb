@@ -17,6 +17,14 @@ module LinkedList
 
     attr_accessor :start_node
 
+    def each
+      iterator = start_node
+      while iterator
+        yield iterator
+        iterator = iterator.next_node
+      end
+    end
+
     def add_to_start(value)
       node = ensure_node(value)
       node.next_node = start_node unless list_empty?
@@ -77,6 +85,10 @@ module LinkedList
       end
 
       false
+    end
+
+    def empty?
+      start_node.nil?
     end
 
     private
